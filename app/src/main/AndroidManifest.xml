@@ -6,15 +6,29 @@
                  android:icon="@mipmap/ic_launcher"
 
     >
-        <activity android:name=".MainActivity"
-                  android:label="@string/app_name"
-                  >
+        <activity android:name=".acitivies.MainActivity"
+                  android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
+        <activity android:name=".acitivies.SettingsActivity"
+                  android:label="@string/app_name"
+        >
+        </activity>
+        <activity android:name=".acitivies.SearchActivity"
+                  android:label="@string/app_name"
+        >
+        </activity>
+        <activity android:name=".acitivies.NewTestActivity"
+                  android:label="@string/app_name"
+        >
+        </activity>
+        <activity android:name=".acitivies.MyTestActivity"
+                  android:label="@string/app_name"
+        >
+        </activity>
     </application>
 
 </manifest>

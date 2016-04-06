@@ -1,16 +1,14 @@
-package lt.ktu.tester.app;
+package lt.ktu.tester.app.acitivies;
 
 import android.app.Activity;
 import android.os.Bundle;
 
 /**
- * Created by erikas on 07/03/16.
+ * Created by erikas on 2016-04-03.
  */
-public class MainActivity extends Activity {
+public class NewTestActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
-
     }
 }

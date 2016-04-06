@@ -7,6 +7,7 @@ buildscript {
     }
 }
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 repositories {
     jcenter()
@@ -37,6 +38,4 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':core')
 }

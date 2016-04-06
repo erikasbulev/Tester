@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Tester</string>
+    <string name="new_test">New Test</string>
+    <string name="my_test">My tests</string>
+    <string name="options">Options</string>
+    <string name="online">Search online</string>
 </resources>
