@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import lt.ktu.tester.app.R;
+import lt.ktu.tester.app.dialogs.NewTestDialog;
 
 /**
  * Created by erikas on 07/03/16.
@@ -35,7 +36,7 @@ public class MainActivity extends Activity {
 
         myTest.setOnClickListener(v -> startActivityByClass(MyTestActivity.class));
 
-        newTest.setOnClickListener(v -> startActivityByClass(NewTestActivity.class));
+        newTest.setOnClickListener(v -> setNewDialog());
 
         search.setOnClickListener(v -> startActivityByClass(SearchActivity.class));
     }
@@ -43,5 +44,10 @@ public class MainActivity extends Activity {
     private void startActivityByClass(Class clazz) {
         Intent intent = new Intent(MainActivity.this, clazz);
         startActivity(intent);
+    }
+
+    private void setNewDialog(){
+        NewTestDialog dialog = new NewTestDialog(this);
+        dialog.show();
     }
 }
