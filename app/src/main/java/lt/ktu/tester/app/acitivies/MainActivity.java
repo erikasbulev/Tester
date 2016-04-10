@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import com.raizlabs.android.dbflow.config.FlowManager;
 import lt.ktu.tester.app.R;
 import lt.ktu.tester.app.dialogs.NewTestDialog;
 

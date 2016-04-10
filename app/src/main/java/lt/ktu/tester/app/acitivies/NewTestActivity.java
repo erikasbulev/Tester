@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.raizlabs.android.dbflow.sql.language.Select;
 import lt.ktu.tester.app.R;
 import lt.ktu.tester.app.adapters.NewQAdapter;
 import lt.ktu.tester.app.dialogs.AddQuestionDialog;
+import lt.ktu.tester.app.models.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,7 @@ public class NewTestActivity extends Activity {
     Button addNewQuestion;
     ListView questions;
     List<String> names = new ArrayList<>();
+    NewQAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,7 @@ public class NewTestActivity extends Activity {
         setContentView(R.layout.new_test_activity);
         setTestName(getIntent());
         setViews();
-        NewQAdapter adapter = new NewQAdapter(this,R.layout.question_list_item,names);
+        adapter = new NewQAdapter(this, R.layout.question_list_item,names);
         questions.setAdapter(adapter);
     }
 
@@ -56,5 +59,17 @@ public class NewTestActivity extends Activity {
     void addNewQuestion(){
         AddQuestionDialog dialog = new AddQuestionDialog(this);
         dialog.show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Select select = new Select();
+        List<Test> listas = select.from(Test.class).queryList();
+        for(Test item : listas){
+            names.add(item.type);
+        }
+        if(adapter != null)
+            adapter.notifyDataSetChanged();
     }
 }

@@ -8,6 +8,9 @@ buildscript {
 }
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.neenbedankt.android-apt'
+
+def dbflow_version = "3.0.0-beta5"
 
 repositories {
     jcenter()
@@ -38,4 +41,9 @@ android {
 }
 
 dependencies {
+    apt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
+    // kapt for kotlin apt
+    compile "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
+    compile "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
+
 }
