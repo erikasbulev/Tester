@@ -10,7 +10,11 @@ import lt.ktu.tester.app.utils.AppDatabase;
  * Created by erikas on 2016-04-10 KTU final project.
  */
 @Table(database = AppDatabase.class)
-public class Test extends BaseModel {
+public class TextQuestion extends BaseModel {
     @PrimaryKey(autoincrement = true) @Column public int id;
     @Column public String type;
+    @Column public int testId;
+    @Column public String answer;
+    @Column public String question;
+    @Column public int testId_position;
 }

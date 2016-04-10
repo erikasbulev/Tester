@@ -12,7 +12,8 @@ import com.raizlabs.android.dbflow.sql.language.Select;
 import lt.ktu.tester.app.R;
 import lt.ktu.tester.app.adapters.NewQAdapter;
 import lt.ktu.tester.app.dialogs.AddQuestionDialog;
-import lt.ktu.tester.app.models.Test;
+import lt.ktu.tester.app.models.QuestionModel;
+import lt.ktu.tester.app.models.TextQuestion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class NewTestActivity extends Activity {
     TextView testName;
     Button addNewQuestion;
     ListView questions;
-    List<String> names = new ArrayList<>();
+    List<QuestionModel> names = new ArrayList<>();
     NewQAdapter adapter;
 
     @Override
@@ -64,10 +65,13 @@ public class NewTestActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        Select select = new Select();
-        List<Test> listas = select.from(Test.class).queryList();
-        for(Test item : listas){
-            names.add(item.type);
+        names.clear();
+        List<TextQuestion> listas = new Select().from(TextQuestion.class).queryList();
+        for(TextQuestion item : listas){
+            QuestionModel model = new QuestionModel();
+            model.setDisplayString(item.question);
+            model.setType(item.type);
+            names.add(model);
         }
         if(adapter != null)
             adapter.notifyDataSetChanged();

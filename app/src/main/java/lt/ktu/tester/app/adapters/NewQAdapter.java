@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import lt.ktu.tester.app.R;
+import lt.ktu.tester.app.models.QuestionModel;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class NewQAdapter extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        QuestionModel model = (QuestionModel) getItem(position);
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -29,7 +31,7 @@ public class NewQAdapter extends ArrayAdapter {
         TextView view = (TextView) convertView.findViewById(R.id.q_list_item_name);
         TextView viewNo = (TextView) convertView.findViewById(R.id.q_list_item_no);
         viewNo.setText(String.valueOf(position + 1));
-        view.setText((String) getItem(position));
+        view.setText(model.getDisplayString());
         return convertView;
     }
 }

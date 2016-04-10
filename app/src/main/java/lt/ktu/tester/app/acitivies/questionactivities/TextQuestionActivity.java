@@ -5,8 +5,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import lt.ktu.tester.app.R;
-import lt.ktu.tester.app.models.Test;
+import lt.ktu.tester.app.models.TextQuestion;
 
 /**
  * Created by erikas on 2016-04-10 KTU final project.
@@ -31,17 +32,23 @@ public class TextQuestionActivity extends Activity {
     }
 
     void setClicks() {
-     save.setOnClickListener(v -> {
-        saveData();
-     });
+     save.setOnClickListener(v -> saveData());
     }
 
     void saveData(){
-        String text = question.getText().toString();
-        if(!TextUtils.isEmpty(text)){
-            Test test = new Test();
-            test.type = text;
-            test.save();
+        String question = this.question.getText().toString();
+        String answer = this.answer.getText().toString();
+        if(!TextUtils.isEmpty(question) && !TextUtils.isEmpty(answer)){
+            TextQuestion textQuestion = new TextQuestion();
+            textQuestion.type = "text";
+            textQuestion.question = question;
+            textQuestion.answer = answer;
+            textQuestion.testId = 0;
+            textQuestion.save();
+            finish();
+            Toast.makeText(this,"Saved",Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(this,"Enter full fields",Toast.LENGTH_LONG).show();
         }
     }
 }

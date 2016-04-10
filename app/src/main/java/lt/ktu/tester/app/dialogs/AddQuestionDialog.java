@@ -42,6 +42,7 @@ public class AddQuestionDialog extends Dialog {
     }
 
     private void startActivityByClass(Class clazz) {
+        dismiss();
         Intent intent = new Intent(getContext(), clazz);
         getContext().startActivity(intent);
     }

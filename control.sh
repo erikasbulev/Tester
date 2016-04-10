@@ -1,0 +1,1 @@
+adb shell pm clear lt.ktu.tester.app
