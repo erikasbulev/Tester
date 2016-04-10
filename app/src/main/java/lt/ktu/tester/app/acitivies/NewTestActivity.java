@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import lt.ktu.tester.app.R;
 import lt.ktu.tester.app.adapters.NewQAdapter;
+import lt.ktu.tester.app.dialogs.AddQuestionDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,7 @@ public class NewTestActivity extends Activity {
     }
 
     void addNewQuestion(){
-
+        AddQuestionDialog dialog = new AddQuestionDialog(this);
+        dialog.show();
     }
 }

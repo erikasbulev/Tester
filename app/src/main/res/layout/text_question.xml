@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Question"
+            android:id="@+id/textView_text_q" android:layout_alignParentTop="true" android:layout_alignParentStart="true"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="4"
+            android:ems="20"
+            android:id="@+id/text_q_q" android:layout_below="@+id/textView_text_q" android:layout_alignParentStart="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Answer"
+            android:id="@+id/textView_text_q_answer" android:layout_below="@+id/text_q_q" android:layout_alignParentStart="true"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:lines="4"
+            android:ems="20"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_q_a" android:layout_below="@+id/textView_text_q_answer" android:layout_alignParentStart="true"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:id="@+id/save_text_q" android:layout_alignParentBottom="true" android:layout_alignParentEnd="true"/>
+</RelativeLayout>

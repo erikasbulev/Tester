@@ -29,6 +29,10 @@
                   android:label="@string/app_name"
         >
         </activity>
+        <activity android:name=".acitivies.questionactivities.TextQuestionActivity"
+                  android:label="@string/app_name"
+        >
+        </activity>
     </application>
 
 </manifest>
