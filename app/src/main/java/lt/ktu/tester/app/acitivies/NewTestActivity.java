@@ -8,12 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.raizlabs.android.dbflow.sql.language.Condition;
+import com.raizlabs.android.dbflow.sql.language.NameAlias;
+import com.raizlabs.android.dbflow.sql.language.SQLCondition;
 import com.raizlabs.android.dbflow.sql.language.Select;
 import lt.ktu.tester.app.R;
 import lt.ktu.tester.app.adapters.NewQAdapter;
 import lt.ktu.tester.app.dialogs.AddQuestionDialog;
 import lt.ktu.tester.app.models.QuestionModel;
+import lt.ktu.tester.app.models.TestModel;
 import lt.ktu.tester.app.models.TextQuestion;
+import lt.ktu.tester.app.models.TextQuestion_Table;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,14 +32,16 @@ public class NewTestActivity extends Activity {
     ListView questions;
     List<QuestionModel> names = new ArrayList<>();
     NewQAdapter adapter;
+    TestModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        model = new TestModel();
         setContentView(R.layout.new_test_activity);
         setTestName(getIntent());
         setViews();
-        adapter = new NewQAdapter(this, R.layout.question_list_item,names);
+        adapter = new NewQAdapter(this, R.layout.question_list_item, names);
         questions.setAdapter(adapter);
     }
 
@@ -49,16 +56,19 @@ public class NewTestActivity extends Activity {
         String sTestName = intent.getExtras().getString("test_name");
         if (TextUtils.isEmpty(sTestName))
             testName.setVisibility(View.INVISIBLE);
-        else
+        else {
             testName.setText(sTestName);
+            model.name = sTestName;
+        }
+        model.save();
     }
 
-    void setOnClicks(){
+    void setOnClicks() {
         addNewQuestion.setOnClickListener(v -> addNewQuestion());
     }
 
-    void addNewQuestion(){
-        AddQuestionDialog dialog = new AddQuestionDialog(this);
+    void addNewQuestion() {
+        AddQuestionDialog dialog = new AddQuestionDialog(this, model.id);
         dialog.show();
     }
 
@@ -66,14 +76,15 @@ public class NewTestActivity extends Activity {
     protected void onResume() {
         super.onResume();
         names.clear();
-        List<TextQuestion> listas = new Select().from(TextQuestion.class).queryList();
-        for(TextQuestion item : listas){
+        List<TextQuestion> listas = new Select().from(TextQuestion.class).
+                where(TextQuestion_Table.testId.eq(model.id)).queryList();
+        for (TextQuestion item : listas) {
             QuestionModel model = new QuestionModel();
             model.setDisplayString(item.question);
             model.setType(item.type);
             names.add(model);
         }
-        if(adapter != null)
+        if (adapter != null)
             adapter.notifyDataSetChanged();
     }
 }

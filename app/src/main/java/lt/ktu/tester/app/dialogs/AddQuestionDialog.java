@@ -18,12 +18,14 @@ public class AddQuestionDialog extends Dialog {
     Button textQuestion;
     Button pictureQuestion;
     Button correctPick;
+    int id;
 
-    public AddQuestionDialog(Context context) {
+    public AddQuestionDialog(Context context,int id) {
         super(context);
         setContentView(R.layout.dialog_new_q);
         setViews();
         setTitle("Add new question");
+        this.id = id;
     }
 
     void setViews() {
@@ -44,6 +46,7 @@ public class AddQuestionDialog extends Dialog {
     private void startActivityByClass(Class clazz) {
         dismiss();
         Intent intent = new Intent(getContext(), clazz);
+        intent.putExtra("test_id",id);
         getContext().startActivity(intent);
     }
 }

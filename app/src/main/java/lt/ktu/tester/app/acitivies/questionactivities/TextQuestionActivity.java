@@ -16,12 +16,14 @@ public class TextQuestionActivity extends Activity {
     EditText question;
     EditText answer;
     Button save;
+    int test_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.text_question);
         setViews();
+        test_id = getIntent().getExtras().getInt("test_id");
     }
 
     void setViews() {
@@ -43,7 +45,7 @@ public class TextQuestionActivity extends Activity {
             textQuestion.type = "text";
             textQuestion.question = question;
             textQuestion.answer = answer;
-            textQuestion.testId = 0;
+            textQuestion.testId = test_id;
             textQuestion.save();
             finish();
             Toast.makeText(this,"Saved",Toast.LENGTH_LONG).show();
